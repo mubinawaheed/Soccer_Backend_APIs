@@ -44,8 +44,24 @@ router.post('/create_match', async (req, res) => {
         Schedule: req.body.Schedule
     })
     return res.json({ match: match, success: "Match scheduled successfully" })
+});
+
+router.get('/deletematch/:id', async(req, res)=>{
+    try{
+        let d_match=Matches.findById(req.params.id)
+        if (!d_match){
+            return res.status(404).json("Match not found")
+        }
+        else{
+            match = await Matches.findByIdAndDelete(req.params.id)
+            res.json({ "Success": "Match has been deleted" })
+        }
+    }
+    catch(error){
+        return res.status(404).json("match not found")
+
+    }
 })
-
-
+  
 
 module.exports = router;

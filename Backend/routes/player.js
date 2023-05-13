@@ -101,7 +101,7 @@ router.get('/delete_player/:id', async (req,res)=>{
         }
         else{
             player = await Players.findByIdAndDelete(req.params.id)
-            res.json({ "Success": "Note has been deleted" })
+            res.json({ "Success": "Player has been deleted" })
         }
     }
     catch(error){
